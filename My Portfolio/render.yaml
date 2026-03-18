@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: dostonbek-portfolio
+    env: python
+    buildCommand: "pip install -r requirements.txt && python manage.py collectstatic --no-input && python manage.py migrate && python setup.py"
+    startCommand: "gunicorn config.wsgi:application"
