@@ -1,0 +1,288 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+<!-- ══ ABOUT ══ -->
+<section id="about" class="py-24 relative overflow-hidden">
+  <div class="blob-orange -top-20 -left-20 w-80 h-80 opacity-20"></div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-14 reveal">
+      <span class="text-primary-500 text-sm font-semibold tracking-widest uppercase">01. Men haqimda</span>
+      <h2 class="text-4xl lg:text-5xl font-bold text-white mt-2">Kimman men?</h2>
+    </div>
+    {% if profile %}
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+      <div class="reveal space-y-5">
+        <p class="text-gray-300 text-lg leading-relaxed">{{ profile.bio }}</p>
+        <div class="grid grid-cols-2 gap-4 pt-4">
+          <div class="glass-card rounded-xl p-4 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-primary-500/20 flex items-center justify-center text-primary-400 shrink-0"><i class="fas fa-map-marker-alt"></i></div>
+            <div><p class="text-gray-500 text-xs">Joylashuv</p><p class="text-white text-sm font-medium">{{ profile.location }}</p></div>
+          </div>
+          <div class="glass-card rounded-xl p-4 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center text-green-400 shrink-0"><i class="fas fa-briefcase"></i></div>
+            <div><p class="text-gray-500 text-xs">Tajriba</p><p class="text-white text-sm font-medium">{{ profile.experience }}</p></div>
+          </div>
+          {% if profile.telegram %}
+          <div class="glass-card rounded-xl p-4 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-sky-500/20 flex items-center justify-center text-sky-400 shrink-0"><i class="fa-brands fa-telegram"></i></div>
+            <div><p class="text-gray-500 text-xs">Telegram</p><p class="text-white text-sm font-medium">@Rasuljonov_009</p></div>
+          </div>
+          {% endif %}
+          {% if profile.github %}
+          <div class="glass-card rounded-xl p-4 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-gray-300 shrink-0"><i class="fa-brands fa-github"></i></div>
+            <div><p class="text-gray-500 text-xs">GitHub</p><p class="text-white text-sm font-medium truncate">.</p></div>
+          </div>
+          {% endif %}
+        </div>
+        {% if profile.github %}
+        <div class="pt-2">
+          <a href="{{ profile.github }}" target="_blank"
+             class="inline-flex items-center gap-2 bg-primary-500 hover:bg-primary-600 text-white px-6 py-3 rounded-full font-semibold text-sm transition shadow-lg shadow-primary-500/30">
+            <i class="fa-brands fa-github"></i> GitHub profilim
+          </a>
+        </div>
+        {% endif %}
+      </div>
+
+      <div class="reveal">
+        <div class="rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+          <div class="flex items-center gap-2 px-4 py-3 bg-dark-800 border-b border-white/10">
+            <span class="w-3 h-3 rounded-full bg-red-500"></span>
+            <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
+            <span class="w-3 h-3 rounded-full bg-green-500"></span>
+            <span class="ml-3 text-gray-500 text-xs font-mono">dostonbek.py</span>
+          </div>
+          <div class="bg-dark-800/80 p-6 font-mono text-sm leading-7">
+            <p class="text-gray-500"># Dasturchi haqida</p><br>
+            <p><span class="text-blue-400">class</span> <span class="text-yellow-300">Developer</span><span class="text-gray-400">:</span></p>
+            <p class="pl-6"><span class="text-sky-300">name</span> <span class="text-gray-400">=</span> <span class="text-green-300">"{{ profile.name }}"</span></p>
+            <p class="pl-6"><span class="text-sky-300">role</span> <span class="text-gray-400">=</span> <span class="text-green-300">"{{ profile.role }}"</span></p>
+            <p class="pl-6"><span class="text-sky-300">location</span> <span class="text-gray-400">=</span> <span class="text-green-300">"{{ profile.location }}"</span></p><br>
+            <p class="pl-6"><span class="text-sky-300">open_to_work</span> <span class="text-gray-400">=</span> <span class="text-orange-400">True</span></p>
+            <p class="pl-6"><span class="text-sky-300">email</span> <span class="text-gray-400">=</span> <span class="text-green-300">"{{ profile.email }}"</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% else %}
+    <div class="text-center py-10"><p class="text-gray-500">Admin panelda profil ma'lumotlarini kiriting.</p></div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- ══ SKILLS ══ -->
+<section id="skills" class="py-24 bg-dark-800/30">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-14 reveal">
+      <span class="text-primary-500 text-sm font-semibold tracking-widest uppercase">02. Ko'nikmalar</span>
+      <h2 class="text-4xl lg:text-5xl font-bold text-white mt-2">Texnologiyalar</h2>
+    </div>
+    {% if skills %}
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {% for skill in skills %}
+      <div class="glass-card rounded-2xl p-6 reveal">
+        <div class="flex items-start gap-4 mb-4">
+          <div class="w-12 h-12 rounded-xl bg-primary-500/15 flex items-center justify-center text-primary-400 text-xl shrink-0">
+            <i class="{{ skill.icon }}"></i>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center justify-between mb-1">
+              <h3 class="text-white font-bold text-lg">{{ skill.name }}</h3>
+              <span class="text-primary-400 font-bold text-sm">{{ skill.level }}%</span>
+            </div>
+            <div class="skill-bar-track">
+              <div class="skill-bar-fill" data-width="{{ skill.level }}"></div>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-2 mt-4">
+          {% for tag in skill.tags_list %}
+          <span class="px-3 py-1 bg-white/5 text-gray-300 text-xs rounded-full border border-white/10">{{ tag }}</span>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="text-center py-10"><p class="text-gray-500">Admin panelda ko'nikmalar qo'shing.</p></div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- ══ EXPERIENCE ══ -->
+<section id="experience" class="py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-14 reveal">
+      <span class="text-primary-500 text-sm font-semibold tracking-widest uppercase">03. Tajriba</span>
+      <h2 class="text-4xl lg:text-5xl font-bold text-white mt-2">Ish tajribasi</h2>
+    </div>
+    <div class="max-w-3xl mx-auto">
+      {% if experiences %}
+      <div class="relative pl-12">
+        <div class="timeline-line"></div>
+        {% for exp in experiences %}
+        <div class="relative mb-8 reveal">
+          <div class="absolute -left-12 top-5 w-10 h-10 rounded-full bg-primary-500/20 border-2 border-primary-500 flex items-center justify-center text-primary-400 shadow-lg shadow-primary-500/20">
+            <i class="fas fa-briefcase text-xs"></i>
+          </div>
+          <div class="glass-card rounded-2xl p-6">
+            <div class="flex flex-wrap items-start justify-between gap-3 mb-3">
+              <div>
+                <h3 class="text-white font-bold text-xl">{{ exp.company }}</h3>
+                <p class="text-primary-400 font-medium text-sm mt-0.5">{{ exp.role }}</p>
+              </div>
+              <div class="text-right">
+                <span class="glass px-3 py-1 rounded-full text-xs text-gray-300">{{ exp.period }}</span>
+                <p class="text-gray-500 text-xs mt-1">{{ exp.type }}</p>
+              </div>
+            </div>
+            <p class="text-gray-400 text-sm leading-relaxed mb-4">{{ exp.desc }}</p>
+            <div class="flex flex-wrap gap-2">
+              {% for tag in exp.tags_list %}
+              <span class="px-3 py-1 bg-primary-500/10 border border-primary-500/25 text-primary-300 text-xs rounded-full">{{ tag }}</span>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <div class="text-center py-10"><p class="text-gray-500">Admin panelda tajriba qo'shing.</p></div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<!-- ══ EDUCATION ══ -->
+<section id="education" class="py-24 bg-dark-800/30">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-14 reveal">
+      <span class="text-primary-500 text-sm font-semibold tracking-widest uppercase">04. Ta'lim</span>
+      <h2 class="text-4xl lg:text-5xl font-bold text-white mt-2">Ta'lim</h2>
+    </div>
+    <div class="max-w-3xl mx-auto">
+      {% if education %}
+      <div class="relative pl-12">
+        <div class="timeline-line"></div>
+        {% for edu in education %}
+        <div class="relative mb-8 reveal">
+          <div class="absolute -left-12 top-5 w-10 h-10 rounded-full bg-blue-500/20 border-2 border-blue-400 flex items-center justify-center text-blue-400 shadow-lg shadow-blue-400/20">
+            <i class="{{ edu.icon }} text-xs"></i>
+          </div>
+          <div class="glass-card rounded-2xl p-6">
+            <div class="flex flex-wrap items-start justify-between gap-3 mb-3">
+              <div>
+                <h3 class="text-white font-bold text-xl">{{ edu.school }}</h3>
+                <p class="text-blue-400 font-medium text-sm mt-0.5">{{ edu.field }}</p>
+              </div>
+              <span class="glass px-3 py-1 rounded-full text-xs text-gray-300">{{ edu.period }}</span>
+            </div>
+            <p class="text-gray-400 text-sm leading-relaxed">{{ edu.desc }}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <div class="text-center py-10"><p class="text-gray-500">Admin panelda ta'lim qo'shing.</p></div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROJECTS ══ -->
+<section id="projects" class="py-24 relative overflow-hidden">
+  <div class="blob-orange top-0 right-0 w-96 h-96 opacity-10"></div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-14 reveal">
+      <span class="text-primary-500 text-sm font-semibold tracking-widest uppercase">05. Loyihalar</span>
+      <h2 class="text-4xl lg:text-5xl font-bold text-white mt-2">Loyihalar</h2>
+    </div>
+    {% if projects %}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {% for project in projects %}
+      <div class="glass-card rounded-2xl p-6 reveal flex flex-col {% if not project.stack %}opacity-60{% endif %}">
+        <div class="flex items-start justify-between mb-4">
+          <div>
+            <p class="text-gray-500 text-xs font-medium uppercase tracking-wider mb-1">{{ project.num }} · {{ project.category }}</p>
+            <h3 class="text-white font-bold text-xl">{{ project.name }}</h3>
+          </div>
+          {% if project.badge %}
+          <span class="px-3 py-1 rounded-full text-xs font-semibold badge-{{ project.badge_color }} shrink-0 ml-2">{{ project.badge }}</span>
+          {% endif %}
+        </div>
+        <p class="text-gray-400 text-sm leading-relaxed mb-5 flex-1">{{ project.desc }}</p>
+        {% if project.stack %}
+        <div class="flex flex-wrap gap-2 mb-4">
+          {% for tech in project.stack_list %}
+          <span class="px-3 py-1 bg-primary-500/10 border border-primary-500/20 text-primary-300 text-xs rounded-full">{{ tech }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+        <div class="flex items-center gap-3 pt-2 border-t border-white/5">
+          {% if project.github %}
+          <a href="{{ project.github }}" target="_blank" class="flex items-center gap-2 text-gray-400 hover:text-white text-sm transition">
+            <i class="fa-brands fa-github"></i> Kod
+          </a>
+          {% endif %}
+          {% if not project.stack %}
+          <span class="text-gray-600 text-xs flex items-center gap-1"><i class="fas fa-clock text-[10px]"></i> Tez kunda</span>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="text-center py-10"><p class="text-gray-500">Hozircha mavjud emas</p></div>
+    {% endif %}
+    {% if profile.github %}
+    <div class="text-center mt-10 reveal">
+      <a href="{{ profile.github }}" target="_blank"
+         class="inline-flex items-center gap-2 glass px-7 py-3.5 rounded-full text-white font-semibold hover:bg-white/10 transition border border-white/10 hover:border-white/25">
+        <i class="fa-brands fa-github text-lg"></i> Barcha loyihalar GitHub'da
+        <i class="fas fa-arrow-right text-sm text-primary-400"></i>
+      </a>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<section id="contact" class="py-24 bg-dark-800/30">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div class="reveal">
+      <span class="text-primary-500 text-sm font-semibold tracking-widest uppercase">06. Aloqa</span>
+      <h2 class="text-4xl lg:text-5xl font-bold text-white mt-2 mb-4">Bog'laning</h2>
+      <p class="text-gray-400 text-lg leading-relaxed mb-10">Yangi loyiha, hamkorlik yoki shunchaki suhbat uchun xabar yozing. 24 soat ichida javob beraman.</p>
+    </div>
+    {% if profile %}
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 reveal">
+      <a href="mailto:{{ profile.email }}" class="glass-card rounded-2xl p-6 flex flex-col items-center gap-3 group">
+        <div class="w-14 h-14 rounded-xl bg-primary-500/15 flex items-center justify-center text-primary-400 text-2xl group-hover:bg-primary-500/25 transition"><i class="fas fa-envelope"></i></div>
+        <div><p class="text-white font-semibold text-sm">Email</p><p class="text-gray-500 text-xs mt-0.5 break-all">{{ profile.email }}</p></div>
+      </a>
+      {% if profile.telegram %}
+      <a href="{{ profile.telegram }}" target="_blank" class="glass-card rounded-2xl p-6 flex flex-col items-center gap-3 group">
+        <div class="w-14 h-14 rounded-xl bg-sky-500/15 flex items-center justify-center text-sky-400 text-2xl group-hover:bg-sky-500/25 transition"><i class="fa-brands fa-telegram"></i></div>
+        <div><p class="text-white font-semibold text-sm">Telegram</p><p class="text-gray-500 text-xs mt-0.5">@Rasuljonov_009</p></div>
+      </a>
+      {% endif %}
+      {% if profile.github %}
+      <a href="{{ profile.github }}" target="_blank" class="glass-card rounded-2xl p-6 flex flex-col items-center gap-3 group">
+        <div class="w-14 h-14 rounded-xl bg-white/10 flex items-center justify-center text-gray-300 text-2xl group-hover:bg-white/20 transition"><i class="fa-brands fa-github"></i></div>
+        <div><p class="text-white font-semibold text-sm">GitHub</p><p class="text-gray-500 text-xs mt-0.5">.</p></div>
+      </a>
+      {% endif %}
+    </div>
+    <div class="mt-10 reveal">
+      <a href="mailto:{{ profile.email }}"
+         class="inline-flex items-center gap-2 bg-primary-500 hover:bg-primary-600 text-white px-10 py-4 rounded-full font-bold text-lg transition shadow-xl shadow-primary-500/30 hover:-translate-y-1">
+        Xabar yuborish <i class="fas fa-paper-plane"></i>
+      </a>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+{% endblock main %}

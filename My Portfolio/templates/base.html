@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rasuljonov Dostonbek — Backend Developer</title>
+  <meta name="description" content="Rasuljonov Dostonbek — Python, Django, PostgreSQL, Telegram Bot dasturchi. Shaxsiy portfolio sayt.">
+  {% include 'components/_scripts_and_styles.html' %}
+</head>
+<body class="bg-dark-900 text-slate-50 font-outfit antialiased">
+
+  {% include 'components/_navbar.html' %}
+  {% include 'components/_hero.html' %}
+
+  {% block main %}{% endblock main %}
+
+  {% include 'layout/footer.html' %}
+
+</body>
+</html>

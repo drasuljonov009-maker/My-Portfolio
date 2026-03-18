@@ -1,0 +1,58 @@
+<nav class="fixed w-full z-40 glass top-0 transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-20">
+      <a href="{% url 'index' %}" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-full bg-primary-500 flex items-center justify-center text-white font-bold shadow-lg shadow-primary-500/30 group-hover:scale-110 transition">
+          <span class="text-sm font-bold">RD</span>
+        </div>
+        <span class="font-bold text-xl tracking-tight text-white">Dostonbek<span class="text-primary-500">.</span></span>
+      </a>
+
+      <div class="hidden md:flex items-center space-x-7">
+        <a href="#about"      class="text-gray-300 hover:text-primary-400 font-medium transition text-sm">Haqimda</a>
+        <a href="#skills"     class="text-gray-300 hover:text-primary-400 font-medium transition text-sm">Ko'nikmalar</a>
+        <a href="#experience" class="text-gray-300 hover:text-primary-400 font-medium transition text-sm">Tajriba</a>
+        <a href="#education"  class="text-gray-300 hover:text-primary-400 font-medium transition text-sm">Ta'lim</a>
+        <a href="#projects"   class="text-gray-300 hover:text-primary-400 font-medium transition text-sm">Loyihalar</a>
+        <a href="#contact"    class="text-gray-300 hover:text-primary-400 font-medium transition text-sm">Aloqa</a>
+      </div>
+
+      <div class="hidden md:flex items-center gap-3">
+        <a href="/admin/" class="w-9 h-9 glass rounded-full flex items-center justify-center text-gray-300 hover:text-primary-400 hover:border-primary-500/40 transition" title="Admin panel">
+          <i class="fas fa-cog text-sm"></i>
+        </a>
+        {% if profile.telegram %}
+        <a href="{{ profile.telegram }}" target="_blank"
+           class="bg-primary-500 hover:bg-primary-600 text-white px-5 py-2 rounded-full font-semibold text-sm transition shadow-lg shadow-primary-500/30 flex items-center gap-2">
+          <i class="fa-brands fa-telegram"></i> Bog'lanish
+        </a>
+        {% endif %}
+      </div>
+
+      <button onclick="toggleMenu()" class="md:hidden text-gray-300 hover:text-white focus:outline-none">
+        <i class="fas fa-bars text-2xl"></i>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="md:hidden hidden glass border-t border-white/10 absolute w-full left-0">
+    <div class="px-4 pt-2 pb-5 space-y-1 bg-dark-900 shadow-2xl">
+      <a href="#about"      onclick="toggleMenu()" class="block px-3 py-2.5 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 text-sm font-medium transition">Haqimda</a>
+      <a href="#skills"     onclick="toggleMenu()" class="block px-3 py-2.5 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 text-sm font-medium transition">Ko'nikmalar</a>
+      <a href="#experience" onclick="toggleMenu()" class="block px-3 py-2.5 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 text-sm font-medium transition">Tajriba</a>
+      <a href="#education"  onclick="toggleMenu()" class="block px-3 py-2.5 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 text-sm font-medium transition">Ta'lim</a>
+      <a href="#projects"   onclick="toggleMenu()" class="block px-3 py-2.5 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 text-sm font-medium transition">Loyihalar</a>
+      <div class="border-t border-white/10 my-2 pt-2 flex flex-col gap-2">
+        <a href="/admin/" class="block text-center glass text-gray-300 px-3 py-2.5 rounded-lg font-medium transition text-sm">
+          <i class="fas fa-cog mr-1"></i> Admin panel
+        </a>
+        {% if profile.telegram %}
+        <a href="{{ profile.telegram }}" target="_blank"
+           class="block text-center bg-primary-500 hover:bg-primary-600 text-white px-3 py-2.5 rounded-lg font-bold transition">
+          <i class="fa-brands fa-telegram mr-1"></i> Bog'lanish
+        </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</nav>
